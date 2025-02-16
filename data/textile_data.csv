@@ -1,6 +1,6 @@
 Material,CO2Emission_kg_per_kg,Water_Usage_L_per_kg,Recyclability(%)
-Cotton,8.3+8.3x(1-((150x2x2)/1000)),10000,
-Polyester,6.4+6.4x(1-((150x2x2)/1000)),83
-Wool,13.89+13.89x(1-((150x2x2)/1000)),170000
-Nylon,7.31+7.31x(1-((150x2x2)/1000)),
-Linen,4.5+4.5x(1-((150x2x2)/1000)),
+Cotton,15,10000,30
+Polyester,6,50,80
+Wool,20,15000,50
+Nylon,10,200,70
+Linen,8,500,90
