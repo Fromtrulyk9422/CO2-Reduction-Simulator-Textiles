@@ -1,2 +1,2 @@
 Material,CO2Emission_kg_per_kg,Water_Usage_L_per_kg,Recyclability(%)
-Cotton,8.3+8.3x(1-((150x2x2)/1000))
+Cotton,8.3+8.3x(1-((150x2x2)/1000)),
