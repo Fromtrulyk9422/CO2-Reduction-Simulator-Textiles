@@ -1,5 +1,6 @@
 # CO2-Reduction-Simulator
 A Python-based simulator for analyzing CO₂ reduction in different industries.
+
 📊 Dataset: textile_data.csv
 This dataset contains hypothetical data (as real and reliable data is difficult to find and diverge between sources) for different materials used in the textile industry, focusing on three key parameters that contribute to environmental sustainability:
 
