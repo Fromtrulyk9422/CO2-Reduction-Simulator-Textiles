@@ -1,4 +1,4 @@
-import panda as pd
+import pandas as pd
 data=pd.read_csv('data/textiles_data.csv')
 print("Dataset Loaded:")
 print(data)
