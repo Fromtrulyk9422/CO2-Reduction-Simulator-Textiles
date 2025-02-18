@@ -1,27 +1,32 @@
 import pandas as pd
+import streamlit as st
 
-data = pd.read_csv('data/textile_data.csv')
-
-print("Dataset Loaded:")
-print(data)
+data = pd.read_csv("textile_data.csv")
 
 def calculate_total_emissions(material, weight):
-    CO2_Emissions_kg_per_kg = data[data['Material'] == material]['CO2_Emissions_kg_per_kg'].values[0]
-    return CO2_Emissions_kg_per_kg * weight
+    emissions_per_kg = data[data['Material'] == material]['CO2_Emission_kg_per_kg'].values[0]
+    return emissions_per_kg * weight
 
-def calculate_CO2_emissions_reduction(material_from, material_to, weight):
-    emissions_from = calculate_total_emissions(material_from, weight)
-    emissions_to = calculate_total_emissions(material_to, weight)
-    return emissions_from - emissions_to
+st.title("CO₂ Reduction Simulator for Textiles")
+st.write("Choose a material and compare its CO₂ emissions with alternatives.")
 
-weight_of_material = 100  # kg of material used
+materials = data["Material"].unique()
+current_material = st.selectbox("Select your current material:", materials)
+replacement_material = st.selectbox("Select a replacement material:", materials)
 
-print(f"\nCalculating CO2 emissions for {weight_of_material}kg of each material:")
-cotton_emissions = calculate_total_emissions("Cotton", weight_of_material)
-polyester_emissions = calculate_total_emissions("Polyester", weight_of_material)
+weight = st.number_input("Enter the weight of material (kg):", min_value=0.1, value=10.0, step=0.1)
 
-print(f"CO2 emissions for Cotton: {cotton_emissions} kg")
-print(f"CO2 emissions for Polyester: {polyester_emissions} kg")
+if st.button("Calculate CO₂ Reduction"):
+    current_emission = calculate_total_emissions(current_material, weight)
+    replacement_emission = calculate_total_emissions(replacement_material, weight)
+    reduction = current_emission - replacement_emission
 
-CO2_emissions_reduction = calculate_CO2_emissions_reduction("Cotton", "Polyester", weight_of_material)
-print(f"\nCO2 emissions reduction if replacing Cotton with Polyester: {CO2_emissions_reduction} kg for {weight_of_material}kg of material")
+    st.write(f"If you replace **{current_material}** with **{replacement_material}**,")
+    st.write(f"you will reduce your CO₂ emissions by **{reduction:.2f} kg CO₂**.")
+
+    if reduction > 0:
+        st.success("Great choice! You're reducing your CO2 emissions!")
+    elif reduction < 0:
+        st.warning("This choice actually increases your CO2 emissions! Consider another option.")
+    else:
+        st.info("No change in CO2 emissions. Try another material!")
