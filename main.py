@@ -9,7 +9,7 @@ print(data)
 
 # Function to calculate total CO2 emissions for each material
 def calculate_total_emissions(material, weight):
-    CO2_Emissions_kg_per_kg = data[data['Material'] == material]['CO2_Emission_kg_per_kg'].values[0]
+    CO2_Emissions_kg_per_kg = data[data['Material'] == material]['CO2_Emissions_kg_per_kg'].values[0]
     return CO2_Emissions_kg_per_kg * weight
 
 # Function to calculate CO2 reduction if material is replaced
