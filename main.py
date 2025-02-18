@@ -4,7 +4,7 @@ import streamlit as st
 data = pd.read_csv("data/textile_data.csv")
 
 def calculate_total_emissions(material, weight):
-    CO2_Emissions_kg_per_kg = data[data['Material'] == material]['CO2_Emission_kg_per_kg'].values[0]
+    CO2_Emissions_kg_per_kg = data[data['Material'] == material]['CO2_Emissions_kg_per_kg'].values[0]
     return CO2_Emissions_kg_per_kg * weight
 
 st.title("CO₂ Reduction Simulator for Textiles")
