@@ -1,4 +1,4 @@
-Material,CO2Emission_kg_per_kg,Water_Usage_L_per_kg,Recyclability(%)
+Material,CO2_Emissions_kg_per_kg,Water_Usage_L_per_kg,Recyclability(%)
 Cotton,15,10000,30
 Polyester,6,50,80
 Wool,20,15000,50
