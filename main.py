@@ -1,5 +1,5 @@
 import pandas as pd
-import plotly.express as px
+import matplotlib as plt
 import streamlit as st
 
 data = pd.read_csv("data/textile_data.csv")
@@ -46,14 +46,13 @@ def suggest_CO2_emissions_reduction(material):
     elif replacement_material == "Linen":
         return "Linen is great! For even better sustainable choices you could consider switching to polyester."
 
-fig = px.bar(
-    x=[current_material, replacement_material],
-    y=[current_material_CO2_emissions, replacement_material_CO2_emissions],
-    text= [f"{current_material_CO2_emissions:.2f} kg", f"{replacement_material_CO2_emissions:.2f} kg"],
-    labels={"x": "Material", "y": "CO₂ Emissions (kg)"},
-    title="CO₂ Emissions Comparison",
-    color=["green", "red"]
-)
+fig, ax = plt.subplots()
 
-fig.update_traces(textposition="outside")
-st.plotly_chart(fig)
+ax.bar(current_material, current_material_CO2_emissions, label=f'{current_material}: {current_material_CO2_emissions:.2f} kg/CO₂', color='green')
+ax.bar(replacement_material, replacement_material_CO2_emissions, label=f'{replacement_material}: {replacement_material_CO2_emissions:.2f} kg/CO₂', color='orange')
+
+ax.set_ylabel('CO₂ emissions (kg)')
+ax.set_title(f'CO₂ emissions for {current_material} and {replacement_material}')
+ax.legend()
+
+st.pyplot(fig)
