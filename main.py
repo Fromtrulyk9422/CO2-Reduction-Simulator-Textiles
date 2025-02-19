@@ -69,7 +69,7 @@ if st.button("Calculate CO₂ Reduction"):
             comparison_data.append({
                 "Material": material,
                 "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}",
-                "Difference from Current (kg)": f"{CO2_difference:.2f}",
+                "Difference in CO₂ with {current_material} (kg)": f"{CO2_difference:.2f}",
                 "CO₂ Savings": f"{CO2_difference:.2f}" if CO2_difference > 0 else "",
                 "CO₂ Increase": f"{abs(CO2_difference):.2f}" if CO2_difference < 0 else ""})
 
