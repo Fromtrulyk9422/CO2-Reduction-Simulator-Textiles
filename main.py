@@ -35,7 +35,6 @@ if st.button("Calculate CO₂ Reduction"):
     reduction = current_material_CO2_emissions - replacement_material_CO2_emissions
 
     st.write(f"If you replace **{current_material}** with **{replacement_material}**,")
-
     if reduction > 0:
         st.write(f"you will reduce your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
         st.success("Great choice! You're reducing your CO2 emissions!")
