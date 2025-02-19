@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import streamlit as st
 
 data = pd.read_csv("data/textile_data.csv")
