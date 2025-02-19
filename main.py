@@ -34,6 +34,17 @@ if st.button("Calculate CO₂ Reduction"):
         st.write(f"you will not reduce nor increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
         st.info("No change in CO2 emissions. Try another material!")
 
+    fig, ax = plt.subplots()
+
+    ax.bar(current_material, current_material_CO2_emissions, label=f'{current_material}: {current_material_CO2_emissions:.2f} kg/CO₂', color='green')
+    ax.bar(replacement_material, replacement_material_CO2_emissions, label=f'{replacement_material}: {replacement_material_CO2_emissions:.2f} kg/CO₂', color='orange')
+
+    ax.set_ylabel('CO₂ emissions (kg)')
+    ax.set_title(f'CO₂ emissions for {current_material} and {replacement_material}')
+    ax.legend()
+
+    st.pyplot(fig)
+
 def suggest_CO2_emissions_reduction(material):
     if replacement_material == "Cotton":
         return "Try switching to polyester or linen, which have lower carbon footprints."
@@ -46,13 +57,4 @@ def suggest_CO2_emissions_reduction(material):
     elif replacement_material == "Linen":
         return "Linen is great! For even better sustainable choices you could consider switching to polyester."
 
-fig, ax = plt.subplots()
 
-ax.bar(current_material, current_material_CO2_emissions, label=f'{current_material}: {current_material_CO2_emissions:.2f} kg/CO₂', color='green')
-ax.bar(replacement_material, replacement_material_CO2_emissions, label=f'{replacement_material}: {replacement_material_CO2_emissions:.2f} kg/CO₂', color='orange')
-
-ax.set_ylabel('CO₂ emissions (kg)')
-ax.set_title(f'CO₂ emissions for {current_material} and {replacement_material}')
-ax.legend()
-
-st.pyplot(fig)
