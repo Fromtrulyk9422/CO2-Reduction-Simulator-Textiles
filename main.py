@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import streamlit as st
 
 data = pd.read_csv("data/textile_data.csv")
@@ -44,3 +45,12 @@ def suggest_CO2_emissions_reduction(material):
         return "Try switching to polyester or linen, which have lower carbon footprints."
     if material == "Linen":
         return "Linen is great! For an even lower carbon footprint you could consider switching to polyester."
+
+fig, ax = plt.subplots()
+ax.bar (material_1, CO2_emissions_1, label=f'{material_1}: {CO2_emissions_1:.2f} kg CO2', color='green')
+ax.bar (material_2, CO2_emissions_2, label=f'{material_2}: {CO2_emissions_2:.2f} kg CO2', color='orange')
+ax.set_ylabel ('CO2 emissions (kg)')
+ax.set_title ('CO2 emissions for selected materials')
+ax.legend()
+
+st.pyplot(fig)
