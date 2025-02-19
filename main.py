@@ -45,7 +45,7 @@ if st.button("Calculate CO₂ Reduction"):
         st.markdown(f"If you replace **{current_material}** with **{replacement_material}**, you will not reduce nor increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
 
     suggestion = suggest_CO2_emissions_reduction(replacement_material)
-    st.write(f"**Suggestion:** {suggestion}")
+    st.write(f"{suggestion}")
         
     fig, ax = plt.subplots()
 
