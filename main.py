@@ -60,6 +60,8 @@ if st.button("Calculate CO₂ Reduction"):
 
     comparison_data = []
 
+    st.write("### {current_material} CO₂ emissions comparison with other materials (Ranked from best to worst)")
+    
     for material in materials:
         if material !=current_material:
             material_CO2_emissions = calculate_total_emissions(material, weight)
@@ -75,5 +77,4 @@ if st.button("Calculate CO₂ Reduction"):
     comparison_df = comparison_df.sort_values(by="Difference in CO₂ with {current_material} (kg)", ascending=False)
     comparison_df = comparison_df.reset_index(drop=True)
 
-    st.write("### {current_material} CO₂ emissions comparison with other materials (Ranked from best to worst)")
     st.dataframe(comparison_df, use_container_width=True)
