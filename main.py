@@ -77,5 +77,3 @@ if st.button("Calculate CO₂ Reduction"):
 
     st.write("### {current_material} CO₂ emissions comparison with other materials (Ranked from best to worst)")
     st.dataframe(comparison_df, use_container_width=True)
-    st.write("### **{current_material}** CO₂ emissions comparison with other materials (Ranked from best to worst)")
-    st.dataframe(comparison_df, use_container_width=True)
