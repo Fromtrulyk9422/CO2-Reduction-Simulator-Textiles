@@ -59,6 +59,9 @@ if st.button("Calculate CO₂ Reduction"):
     st.pyplot(fig)
 
     comparison_data = []
+    
+    if "CO₂ Difference (kg)" in comparison_df.columns:
+    comparison_df = comparison_df.sort_values(by="CO₂ Difference (kg)", ascending=False)
 
     for material in materials:
         if material !=current_material:
