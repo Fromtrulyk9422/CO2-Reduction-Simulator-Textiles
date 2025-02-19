@@ -1,11 +1,11 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 import streamlit as st
 
 data = pd.read_csv("data/textile_data.csv")
 
 def calculate_total_emissions(material, weight):
-    CO2_Emissions_kg = data[data['Material'] == material]['CO2_Emissions_kg'].values[0]
+    CO2_Emissions_kg = data[data['Material'] == material]["CO2_Emissions_kg"].values[0]
     return CO2_Emissions_kg * weight
 
 st.title("CO₂ Reduction Simulator for Textiles")
@@ -45,3 +45,15 @@ def suggest_CO2_emissions_reduction(material):
         return "Try switching to polyester or linen, which have lower carbon footprints."
     elif replacement_material == "Linen":
         return "Linen is great! For even better sustainable choices you could consider switching to polyester."
+
+fig = px.bar(
+    x=[current_material, replacement_material],
+    y=[current_material_CO2_emissions, replacement_material_CO2_emissions],
+    text= [f"{current_material_CO2_emissions:.2f} kg", f"{replacement_material_CO2_emissions:.2f} kg"],
+    labels={"x": "Material", "y": "CO₂ Emissions (kg)"},
+    title="CO₂ Emissions Comparison",
+    color=["green", "red"]
+)
+
+fig.update_traces(textposition="outside")
+st.plotly_chart(fig)
