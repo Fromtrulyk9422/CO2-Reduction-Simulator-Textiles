@@ -14,7 +14,7 @@ materials = data["Material"].unique()
 current_material = st.selectbox("Select your current material:", materials)
 replacement_material = st.selectbox("Select a replacement material:", materials)
 
-weight = st.number_input("Enter the weight of material (kg):", min_value=0, step=10)
+weight = st.number_input("Enter the weight of material (kg):", min_value=10, step=10)
 
 if st.button("Calculate CO₂ Reduction"):
     current_CO2_emissions = calculate_total_emissions(current_material, weight)
@@ -32,3 +32,15 @@ if st.button("Calculate CO₂ Reduction"):
     else:
         st.write(f"you will not reduce nor increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
         st.info("No change in CO2 emissions. Try another material!")
+
+def suggest_CO2_emissions_reduction(material):
+    if material == "Cotton":
+        return "Try switching to polyester or linen, which have lower carbon footprints."
+    elif material == "Polyester":
+        return "You could consider using recycled polyester for even better sustainable choices!"
+    elif material == "Wool":
+        return "You could switch for polyester or linen to lower your carbon footprint. Alternatively you could choose responsable sources of wool. Maybe one of your neighbours has sheeps 😁" 
+    elif material == "Nylon":
+        return "Try switching to polyester or linen, which have lower carbon footprints."
+    if material == "Linen":
+        return "Linen is great! For an even lower carbon footprint you could consider switching to polyester."
