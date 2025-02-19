@@ -63,7 +63,7 @@ if st.button("Calculate CO₂ Reduction"):
     comparison_data = []
 
     for material in materials:
-        if material !=current_material
+        if material !=current_material:
         material_CO2_emissions = calculate_total_emissions(material, weight)
         CO2_difference = current_material_CO2_emissions - material_CO2_emissions
         comparison_data.append({
