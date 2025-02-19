@@ -8,18 +8,6 @@ def calculate_total_emissions(material, weight):
     CO2_Emissions_kg = data[data['Material'] == material]["CO2_Emissions_kg"].values[0]
     return CO2_Emissions_kg * weight
 
-  def suggest_CO2_emissions_reduction(material):
-        if replacement_material == "Cotton":
-            return "Try switching to polyester or linen, which have lower carbon footprints."
-        elif replacement_material == "Polyester":
-            return "Polyester is the best option! For an even lower carbon footprint you could consider using recycled polyester."
-        elif replacement_material == "Wool":
-            return "You could switch for polyester or linen to lower your carbon footprint. Alternatively you could choose responsible sources of wool. Maybe one of your neighbours has sheeps 😁" 
-        elif replacement_material == "Nylon":
-            return "Try switching to polyester or linen, which have lower carbon footprints."
-        elif replacement_material == "Linen":
-            return "Linen is great! For even better sustainable choices you could consider switching to polyester."
-
 st.title("CO₂ Reduction Simulator for Textiles")
 st.write("Choose a material and compare its CO₂ emissions with alternatives.")
 
@@ -45,6 +33,18 @@ if st.button("Calculate CO₂ Reduction"):
     else:
         st.write(f"you will not reduce nor increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
         st.info("No change in CO2 emissions. Try another material!")
+        
+ def suggest_CO2_emissions_reduction(material):
+        if replacement_material == "Cotton":
+            return "Try switching to polyester or linen, which have lower carbon footprints."
+        elif replacement_material == "Polyester":
+            return "Polyester is the best option! For an even lower carbon footprint you could consider using recycled polyester."
+        elif replacement_material == "Wool":
+            return "You could switch for polyester or linen to lower your carbon footprint. Alternatively you could choose responsible sources of wool. Maybe one of your neighbours has sheeps 😁" 
+        elif replacement_material == "Nylon":
+            return "Try switching to polyester or linen, which have lower carbon footprints."
+        elif replacement_material == "Linen":
+            return "Linen is great! For even better sustainable choices you could consider switching to polyester."
 
     fig, ax = plt.subplots()
 
