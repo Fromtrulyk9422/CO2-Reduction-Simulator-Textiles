@@ -40,7 +40,7 @@ if st.button("Calculate CO₂ Reduction"):
         st.write(f"you will reduce your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
         st.success("Great choice! You're reducing your CO2 emissions!")
     elif reduction < 0:
-        st.write(f"you will increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
+        st.write(f"you will increase your CO₂ emissions by **{abs(reduction):.2f} kg/CO₂**.")
         st.warning("This choice actually increases your CO2 emissions! Consider another option.")
     else:
         st.write(f"you will not reduce nor increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
