@@ -67,7 +67,7 @@ if st.button("Calculate CO₂ Reduction"):
             comparison_data.append({
                 "Material": material,
                 "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}",
-                "Difference in CO₂ with **{current_material}** (kg)": f"{CO2_difference:.2f}",
+                f"Difference in CO₂ with **{current_material}** (kg)": f"{CO2_difference:.2f}",
                 "CO₂ Savings": f"{CO2_difference:.2f}" if CO2_difference > 0 else "",
                 "CO₂ Increase": f"{abs(CO2_difference):.2f}" if CO2_difference < 0 else ""})
 
@@ -75,5 +75,5 @@ if st.button("Calculate CO₂ Reduction"):
     comparison_df = comparison_df.sort_values(by="Difference in CO₂ with **{current_material}** (kg)", ascending=False)
     comparison_df = comparison_df.reset_index(drop=True)
 
-    st.write("### **{current_material}** CO₂ emissions comparison with other materials (Ranked from best to worst)")
+    st.write(f"### **{current_material}** CO₂ emissions comparison with other materials (Ranked from best to worst)")
     st.dataframe(comparison_df, use_container_width=True)
