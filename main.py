@@ -20,7 +20,7 @@ def suggest_CO2_emissions_reduction(material):
         elif replacement_material == "Linen":
             return "Linen is great! For even better sustainable choices you could consider switching to polyester."
 
-st.title("CO₂ Reduction Simulator for Textiles")
+st.title("CO₂ Reduction Simulator for Textiles Materials")
 st.write("Choose a material and compare its CO₂ emissions with alternatives.")
 
 materials = data["Material"].unique()
