@@ -74,7 +74,7 @@ if st.button("Calculate CO₂ Reduction"):
                 "CO₂ Increase": f"{abs(CO2_difference):.2f}" if CO2_difference < 0 else ""})
 
     comparison_df = pd.DataFrame(comparison_data)
-    comparison_df = comparison_df.sort_values(by="Difference from Current (kg)", ascending=False)
+    comparison_df = comparison_df.sort_values(by="Difference in CO₂ with {current_material} (kg)", ascending=False)
 
     st.write("### {current_material} CO₂ emissions comparison with other materials (Ranked from best to worst)")
-    st.dataframe(comparison_df)
+    st.dataframe(comparison_df, use_container_width=True)
