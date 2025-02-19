@@ -45,16 +45,3 @@ def suggest_CO2_emissions_reduction(material):
         return "Try switching to polyester or linen, which have lower carbon footprints."
     elif replacement_material == "Linen":
         return "Linen is great! For even better sustainable choices you could consider switching to polyester."
-
-st.subheader("Suggestions for CO₂ Reduction")
-st.write(f"**For {current_material}:** {suggest_CO2_emissions_reduction(current_material)}")
-st.write(f"**For {replacement_material}:** {suggest_CO2_emissions_reduction(replacement_material)}")
-
-fig, ax = plt.subplots()
-ax.bar (current_material, current_material_CO2_emissions, label=f'{current_material}: {current_material_CO2_emissions:.2f} kg CO2', color='green')
-ax.bar (replacement_material, replacement_material_CO2_emissions=f'{replacement_material}: {replacement_material_CO2_emissions:.2f} kg CO2', color='orange')
-ax.set_ylabel ('CO2 emissions (kg)')
-ax.set_title ('CO2 emissions for selected materials')
-ax.legend()
-
-st.pyplot(fig)
