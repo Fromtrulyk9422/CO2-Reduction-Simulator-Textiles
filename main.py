@@ -60,16 +60,13 @@ if st.button("Calculate CO₂ Reduction"):
 
     st.pyplot(fig)
 
-    comparison_data = []
+comparison_data = []
     for material in materials:
         material_CO2_emissions = calculate_total_emissions(material, weight)
         comparison_data.append({
             "Material": material,
-            "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}"
-    })
+            "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}"})
 
     comparison_df = pd.DataFrame(comparison_data)
     st.write("### CO₂ Emissions Comparison with the other materials")
     st.dataframe(comparison_df)
-
-
