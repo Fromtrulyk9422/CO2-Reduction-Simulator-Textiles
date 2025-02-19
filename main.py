@@ -64,14 +64,14 @@ if st.button("Calculate CO₂ Reduction"):
 
     for material in materials:
         if material !=current_material:
-        material_CO2_emissions = calculate_total_emissions(material, weight)
-        CO2_difference = current_material_CO2_emissions - material_CO2_emissions
-        comparison_data.append({
-            "Material": material,
-            "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}",
-            "Difference from Current (kg)": f"{CO2_difference:.2f}",
-            "CO₂ Savings": f"{CO2_difference:.2f}" if CO2_difference > 0 else "",
-            "CO₂ Increase": f"{abs(CO2_difference):.2f}" if CO2_difference < 0 else ""})
+            material_CO2_emissions = calculate_total_emissions(material, weight)
+            CO2_difference = current_material_CO2_emissions - material_CO2_emissions
+            comparison_data.append({
+                "Material": material,
+                "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}",
+                "Difference from Current (kg)": f"{CO2_difference:.2f}",
+                "CO₂ Savings": f"{CO2_difference:.2f}" if CO2_difference > 0 else "",
+                "CO₂ Increase": f"{abs(CO2_difference):.2f}" if CO2_difference < 0 else ""})
 
     comparison_df = pd.DataFrame(comparison_data)
     comparison_df = comparison_df.sort_values(by="Difference from Current (kg)", ascending=False)
