@@ -61,7 +61,7 @@ if st.button("Calculate CO₂ Reduction"):
     comparison_data = []
     
     if "CO₂ Difference (kg)" in comparison_df.columns:
-    comparison_df = comparison_df.sort_values(by="CO₂ Difference (kg)", ascending=False)
+        comparison_df = comparison_df.sort_values(by="CO₂ Difference (kg)", ascending=False)
 
     for material in materials:
         if material !=current_material:
