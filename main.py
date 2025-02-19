@@ -27,7 +27,7 @@ materials = data["Material"].unique()
 current_material = st.selectbox("Select your current material:", materials)
 replacement_material = st.selectbox("Select a replacement material:", materials)
 
-weight = st.number_input("Enter the weight of material (kg):", min_value=0, step=10)
+weight = st.number_input("Enter the weight of material (kg):", min_value=10, step=10)
 
 if st.button("Calculate CO₂ Reduction"):
     current_material_CO2_emissions = calculate_total_emissions(current_material, weight)
@@ -59,24 +59,23 @@ if st.button("Calculate CO₂ Reduction"):
     st.pyplot(fig)
 
     comparison_data = []
-    
-    if "CO₂ Difference (kg)" in comparison_df.columns:
-        comparison_df = comparison_df.sort_values(by="CO₂ Difference (kg)", ascending=False)
 
-   for material in materials: 
+    for material in materials:
         if material !=current_material:
             material_CO2_emissions = calculate_total_emissions(material, weight)
             CO2_difference = current_material_CO2_emissions - material_CO2_emissions
             comparison_data.append({
                 "Material": material,
                 "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}",
-                "Difference in CO₂ with **{current_material}** (kg)": f"{CO2_difference:.2f}",
+                "Difference in CO₂ with {current_material} (kg)": f"{CO2_difference:.2f}",
                 "CO₂ Savings": f"{CO2_difference:.2f}" if CO2_difference > 0 else "",
                 "CO₂ Increase": f"{abs(CO2_difference):.2f}" if CO2_difference < 0 else ""})
 
     comparison_df = pd.DataFrame(comparison_data)
-    comparison_df = comparison_df.sort_values(by="Difference in CO₂ with **{current_material}** (kg)", ascending=False)
+    comparison_df = comparison_df.sort_values(by="Difference in CO₂ with {current_material} (kg)", ascending=False)
     comparison_df = comparison_df.reset_index(drop=True)
 
+    st.write("### {current_material} CO₂ emissions comparison with other materials (Ranked from best to worst)")
+    st.dataframe(comparison_df, use_container_width=True)
     st.write("### **{current_material}** CO₂ emissions comparison with other materials (Ranked from best to worst)")
     st.dataframe(comparison_df, use_container_width=True
