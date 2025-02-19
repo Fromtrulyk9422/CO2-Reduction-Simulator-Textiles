@@ -5,8 +5,8 @@ import streamlit as st
 data = pd.read_csv("data/textile_data.csv")
 
 def calculate_total_emissions(material, weight):
-    CO2_Emissions_kg_per_kg = data[data['Material'] == material]['CO2_Emissions_kg_per_kg'].values[0]
-    return CO2_Emissions_kg_per_kg * weight
+    CO2_Emissions_kg = data[data['Material'] == material]['CO2_Emissions_kg'].values[0]
+    return CO2_Emissions_kg * weight
 
 st.title("CO₂ Reduction Simulator for Textiles")
 st.write("Choose a material and compare its CO₂ emissions with alternatives.")
@@ -18,9 +18,9 @@ replacement_material = st.selectbox("Select a replacement material:", materials)
 weight = st.number_input("Enter the weight of material (kg):", min_value=10, step=10)
 
 if st.button("Calculate CO₂ Reduction"):
-    current_CO2_emissions = calculate_total_emissions(current_material, weight)
-    replacement_CO2_emissions = calculate_total_emissions(replacement_material, weight)
-    reduction = current_CO2_emissions - replacement_CO2_emissions
+    current_material_CO2_emissions = calculate_total_emissions(current_material, weight)
+    replacement_material_CO2_emissions = calculate_total_emissions(replacement_material, weight)
+    reduction = current_material_CO2_emissions - replacement_material_CO2_emissions
 
     st.write(f"If you replace **{current_material}** with **{replacement_material}**,")
 
@@ -35,20 +35,24 @@ if st.button("Calculate CO₂ Reduction"):
         st.info("No change in CO2 emissions. Try another material!")
 
 def suggest_CO2_emissions_reduction(material):
-    if material == "Cotton":
+    if replacement_material == "Cotton":
         return "Try switching to polyester or linen, which have lower carbon footprints."
-    elif material == "Polyester":
-        return "You could consider using recycled polyester for even better sustainable choices!"
-    elif material == "Wool":
+    elif replacement_material == "Polyester":
+        return "Polyester is the best option! For an even lower carbon footprint you could consider using recycled polyester."
+    elif replacement_material == "Wool":
         return "You could switch for polyester or linen to lower your carbon footprint. Alternatively you could choose responsible sources of wool. Maybe one of your neighbours has sheeps 😁" 
-    elif material == "Nylon":
+    elif replacement_material == "Nylon":
         return "Try switching to polyester or linen, which have lower carbon footprints."
-    if material == "Linen":
-        return "Linen is great! For an even lower carbon footprint you could consider switching to polyester."
+    elif replacement_material == "Linen":
+        return "Linen is great! For even better sustainable choices you could consider switching to polyester."
+
+st.subheader("Suggestions for CO₂ Reduction")
+st.write(f"**For {current_material}:** {suggest_CO2_emissions_reduction(current_material)}")
+st.write(f"**For {replacement_material}:** {suggest_CO2_emissions_reduction(replacement_material)}")
 
 fig, ax = plt.subplots()
-ax.bar (material_1, CO2_emissions_1, label=f'{material_1}: {CO2_emissions_1:.2f} kg CO2', color='green')
-ax.bar (material_2, CO2_emissions_2, label=f'{material_2}: {CO2_emissions_2:.2f} kg CO2', color='orange')
+ax.bar (current_material, current_material_CO2_emissions, label=f'{current_material}: {current_material_CO2_emissions:.2f} kg CO2', color='green')
+ax.bar (replacement_material, replacement_material_CO2_emissions=f'{replacement_material}: {replacement_material_CO2_emissions:.2f} kg CO2', color='orange')
 ax.set_ylabel ('CO2 emissions (kg)')
 ax.set_title ('CO2 emissions for selected materials')
 ax.legend()
