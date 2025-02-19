@@ -39,7 +39,7 @@ def suggest_CO2_emissions_reduction(material):
     elif material == "Polyester":
         return "You could consider using recycled polyester for even better sustainable choices!"
     elif material == "Wool":
-        return "You could switch for polyester or linen to lower your carbon footprint. Alternatively you could choose responsable sources of wool. Maybe one of your neighbours has sheeps 😁" 
+        return "You could switch for polyester or linen to lower your carbon footprint. Alternatively you could choose responsible sources of wool. Maybe one of your neighbours has sheeps 😁" 
     elif material == "Nylon":
         return "Try switching to polyester or linen, which have lower carbon footprints."
     if material == "Linen":
