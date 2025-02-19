@@ -35,14 +35,14 @@ if st.button("Calculate CO₂ Reduction"):
     reduction = current_material_CO2_emissions - replacement_material_CO2_emissions
 
     if reduction > 0:
-        st.markdown(f"If you replace **{current_material}** with **{replacement_material}**, you will reduce your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
         st.success("Great choice! You're reducing your CO2 emissions!")
+        st.markdown(f"If you replace **{current_material}** with **{replacement_material}**, you will reduce your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
     elif reduction < 0:
-        st.markdown(f"If you replace **{current_material}** with **{replacement_material}**, you will increase your CO₂ emissions by **{abs(reduction):.2f} kg/CO₂**.")
         st.warning("This choice actually increases your CO2 emissions! Consider another option.")
+        st.markdown(f"If you replace **{current_material}** with **{replacement_material}**, you will increase your CO₂ emissions by **{abs(reduction):.2f} kg/CO₂**.")
     else:
-        st.markdown(f"If you replace **{current_material}** with **{replacement_material}**, you will not reduce nor increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
         st.info("No change in CO2 emissions. Try another material!")
+        st.markdown(f"If you replace **{current_material}** with **{replacement_material}**, you will not reduce nor increase your CO₂ emissions by **{reduction:.2f} kg/CO₂**.")
 
     suggestion = suggest_CO2_emissions_reduction(replacement_material)
     st.write(f"**Suggestion:** {suggestion}")
