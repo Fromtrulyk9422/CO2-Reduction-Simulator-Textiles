@@ -61,12 +61,19 @@ if st.button("Calculate CO₂ Reduction"):
     st.pyplot(fig)
 
     comparison_data = []
+
     for material in materials:
         material_CO2_emissions = calculate_total_emissions(material, weight)
+        CO2_difference = current_material_CO2_emissions - material_CO2_emissions
         comparison_data.append({
             "Material": material,
-            "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}"})
+            "CO₂ Emissions (kg)": f"{material_CO2_emissions:.2f}",
+            "Difference from Current (kg)": f"{CO2_difference:.2f}",
+            "CO₂ Savings": f"{CO2_difference:.2f}" if CO2_difference > 0 else "",
+            "CO₂ Increase": f"{abs(CO2_difference):.2f}" if CO2_difference < 0 else ""})
 
     comparison_df = pd.DataFrame(comparison_data)
-    st.write("### CO₂ Emissions Comparison with the other materials")
+    comparison_df = comparison_df.sort_values(by="Difference from Current (kg)", ascending=False)
+
+    st.write("### CO₂ Emissions Comparison with the other materials (Ranked from Best to Worst)")
     st.dataframe(comparison_df)
